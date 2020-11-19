@@ -1,0 +1,1 @@
+An optimization against a simple set of pure enthalpy of vaporization and density measurements, whereby the training set may be estimated by reweighting cached simulation data where available, or may otherwise fallback to using molecular simulation.

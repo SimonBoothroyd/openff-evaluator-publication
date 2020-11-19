@@ -1,0 +1,1 @@
+This study aims to showcase the integration between the OpenFF Evaluator framework and ForceBalance, showcasing advanced features such as the frameworks ability to employ reweighting of cached simulation data to potentially reduce the cost of an optimization.

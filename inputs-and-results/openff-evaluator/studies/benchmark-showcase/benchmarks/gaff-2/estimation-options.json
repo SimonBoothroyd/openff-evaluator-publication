@@ -1,0 +1,10 @@
+{
+  "@type": "openff.evaluator.client.client.RequestOptions",
+  "batch_mode": {
+    "@type": "openff.evaluator.client.client.BatchMode",
+    "value": "SharedComponents"
+  },
+  "calculation_layers": [
+    "SimulationLayer"
+  ]
+}
