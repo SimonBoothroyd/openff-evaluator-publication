@@ -41,9 +41,8 @@ def plot_approach_timings(iteration_statistics, average, output_path):
             "Simulation": simulation_time / 60.0,
         }
 
-        if reweighting_time > 0.0:
-            data_row["Reweighting"] = reweighting_time / 60.0
-            data_row["Overhead"] = overhead_time / 60.0
+        data_row["Reweighting"] = reweighting_time / 60.0
+        data_row["Overhead"] = overhead_time / 60.0
 
         data_rows.append(data_row)
 
@@ -51,6 +50,9 @@ def plot_approach_timings(iteration_statistics, average, output_path):
     data_frame.set_index("Iteration").plot(
         kind="bar", stacked=True, width=1, figsize=(4.3, 4)
     )
+
+    if not average:
+        pyplot.ylim((0.0, 4500.0))
 
     pyplot.legend(loc="best")
     pyplot.ylabel(("" if not average else "Average ") + "Time (m)")

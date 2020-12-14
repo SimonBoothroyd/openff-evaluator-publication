@@ -166,18 +166,9 @@ def parse_protocol_timing_information():
         with open(log_file) as file:
             log_lines = file.read().split("\n")
 
-        modified_time = datetime.fromtimestamp(os.path.getmtime(log_file))
-        modified_time += timedelta(hours=2)
-
         initial_time = parser.parse(
             re.match(r"([\d\-]+\s\d\d:\d\d:\d\d\.\d\d\d)\s", log_lines[0]).group(1),
-            default=modified_time,
         )
-
-        if initial_time > modified_time and initial_time - modified_time > timedelta(
-            seconds=2
-        ):
-            initial_time += timedelta(days=-1)
 
         worker_close_time = initial_time + timedelta(hours=5, minutes=59)
 
