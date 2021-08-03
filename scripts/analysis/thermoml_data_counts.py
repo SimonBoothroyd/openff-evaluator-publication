@@ -4,7 +4,51 @@ import os
 
 import click
 import pandas
+from openff.evaluator import unit
+from openff.evaluator.datasets import PropertyPhase, PhysicalProperty
 from openff.evaluator.datasets.curation.components import thermoml
+from openff.evaluator.datasets.thermoml import thermoml_property
+
+
+@thermoml_property(
+    "Vapor or sublimation pressure, kPa",
+    supported_phases=PropertyPhase.Liquid | PropertyPhase.Gas,
+)
+class VaporPressure(PhysicalProperty):
+    @classmethod
+    def default_unit(cls):
+        return unit.kilopascal
+
+
+@thermoml_property("Activity coefficient", supported_phases=PropertyPhase.Liquid)
+class ActivityCoefficient(PhysicalProperty):
+    @classmethod
+    def default_unit(cls):
+        return unit.dimensionless
+
+
+@thermoml_property("Osmotic coefficient", supported_phases=PropertyPhase.Liquid)
+class OsmoticCoefficient(PhysicalProperty):
+    @classmethod
+    def default_unit(cls):
+        return unit.dimensionless
+
+
+@thermoml_property("Speed of sound, m/s", supported_phases=PropertyPhase.Liquid)
+class SpeedOfSound(PhysicalProperty):
+    @classmethod
+    def default_unit(cls):
+        return unit.meter / unit.second
+
+
+@thermoml_property(
+    "Surface tension liquid-gas, N/m",
+    supported_phases=PropertyPhase.Liquid | PropertyPhase.Gas,
+)
+class LiquidGasSurfaceTension(PhysicalProperty):
+    @classmethod
+    def default_unit(cls):
+        return unit.newton / unit.meter
 
 
 @click.command()
